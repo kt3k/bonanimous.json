@@ -1,0 +1,25 @@
+[{
+    "name": "rot",
+    "nodes": {
+        "0": {
+            "r": [[0, 0], [100, 360]],
+            "t": [],
+            "s": [[0, 1], [100, 0.2]],
+            "repeat": "inifinite",
+            "timing": "linear",
+            "dir": "alternate"
+        },
+        "0-0": {
+            "r": [[0, 0], [100, 360]],
+            "repeat": "inifinite",
+            "timing": "linear",
+            "dir": "alternate"
+        },
+        "0-0-0": {
+            "r": [[0, 0], [100, 360]],
+            "rep": "inifinite",
+            "timing": "linear",
+            "dir": "alternate"
+        }
+    }
+}]
