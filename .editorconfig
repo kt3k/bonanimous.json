@@ -2,6 +2,9 @@
 
 root = true
 
+[*]
+trim_trailing_whitespace = true
+
 [*.html]
 
 indent_size = 2
