@@ -34,17 +34,17 @@ The id of the parent bone. If null, it's the root bone.
 
 the name of the animation
 
-### nodes (NodeAnimations)
+### nodes: `Array<NodeAnimation>`
 
 ## NodeAnimation interface
 
-### r: `Array<Transform>`
-### s: `Array<Transform>`
-### t: `Array<Transform>`
+### r: `Array<Transform>` optional
+### s: `Array<Transform>` optional
+### t: `Array<Transform>` optional
 
-### timing: `String`
-### repeat: `String`
-### dir: `String`
+### timing: `String` optional
+### repeat: `String` optional
+### dir: `String` optional
 
 ## Transform interface (Tuple)
 
