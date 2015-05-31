@@ -35,6 +35,7 @@ describe('BoneAnimation', function () {
 
         it('creates a BoneAnimation from the object', function () {
 
+            console.log(boneAnimationList[0]);
             var boneAnimation = this.factory.createFromObject(boneAnimationList[0]);
 
             expect(boneAnimation).to.be.instanceof(BoneAnimation);
