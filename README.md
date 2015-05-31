@@ -12,6 +12,26 @@
 
 ## .bone.json
 
+Example
+```json
+[{
+    "id": "0",
+    "x": 150,
+    "y": 150,
+    "parent": null
+}, {
+    "id": "0-0",
+    "x": -90,
+    "y": -90,
+    "parent": "0"
+}, {
+    "id": "0-0-0",
+    "x": -30,
+    "y": -30,
+    "parent": "0-0"
+}]
+```
+
 ### id: `String`
 
 The id of the bone.
@@ -29,6 +49,34 @@ y coordinate from its parent bone's origin.
 The id of the parent bone. If null, it's the root bone.
 
 ## .anim.json
+
+Example
+```json
+[{
+    "name": "rot",
+    "nodes": [{
+        "id": "0",
+        "r": [[0, 0], [100, 360]],
+        "t": [],
+        "s": [[0, 1], [100, 0.2]],
+        "repeat": "inifinite",
+        "timing": "linear",
+        "dir": "alternate"
+    }, {
+        "id": "0-0",
+        "r": [[0, 0], [100, 360]],
+        "repeat": "inifinite",
+        "timing": "linear",
+        "dir": "alternate"
+    }, {
+        "id": "0-0-0",
+        "r": [[0, 0], [100, 360]],
+        "rep": "inifinite",
+        "timing": "linear",
+        "dir": "alternate"
+    }]
+}]
+```
 
 ### name: `String`
 
