@@ -2,6 +2,7 @@
 
 var BoneFactory = require('../../lib/domain/BoneFactory');
 var Bone = require('../../lib/domain/Bone');
+var BoneTree = require('../../lib/domain/BoneTree');
 
 var boneList = require('../fixture/example.bone');
 
@@ -43,6 +44,18 @@ describe('BoneFactory', function () {
 
         });
 
+    });
+
+
+    describe('createTreeFromObjectList', function () {
+
+        it('creates a bone tree from the object list', function () {
+
+            var boneTree = this.factory.createTreeFromObjectList(boneList);
+
+            expect(boneTree).to.be.instanceof(BoneTree);
+
+        });
     });
 
 });
