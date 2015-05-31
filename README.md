@@ -90,6 +90,7 @@ the name of the animation
 ### s: `Array<Transform>` optional
 ### t: `Array<Transform>` optional
 
+### duration: `Number` optional
 ### timing: `String` optional
 ### repeat: `String` optional
 ### dir: `String` optional
