@@ -48,8 +48,24 @@ the name of the animation
 
 ## Transform interface (Tuple)
 
-Transform is represented as the tuple of `(keyframe(Number), value0(Number), value1(Number))`
+Transform is represented as the 3-tuple of `(keyframe(Number), value0(Number), value1(Number))`
 
+### 0: `Number`
+
+This represents the keyframe, from 0 to 100
+
+### 1: `Number`
+
+This represents the value of the transform in the given keyframe.
+If the transform is a rotation, this is the degree of the rotation.
+If the transform is a translation, this is the distance along the x coordinate.
+If the transform is a scaling, this is the scaling ratio along the x coordinate.
+
+### 2: `Number` optional
+
+This represents the additional value of the transform in the given keyframe.
+If the transform is a translation, this is the distance along the y coordinate.
+If the transform is a scaling, this is the scaling ratio along the y coordinate.
 
 # License
 
