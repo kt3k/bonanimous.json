@@ -1,7 +1,7 @@
 [{
     "name": "rot",
     "nodes": [{
-        "id": "0",
+        "id": "a0",
         "r": [[0, 0], [100, 360]],
         "t": [],
         "s": [[0, 1], [100, 0.2]],
@@ -10,14 +10,14 @@
         "timing": "linear",
         "dir": "alternate"
     }, {
-        "id": "0-0",
+        "id": "a0-0",
         "r": [[0, 0], [100, 360]],
         "duration": 2000,
         "repeat": "infinite",
         "timing": "linear",
         "dir": "alternate"
     }, {
-        "id": "0-0-0",
+        "id": "a0-0-0",
         "r": [[0, 0], [100, 360]],
         "duration": 2000,
         "repeat": "infinite",
