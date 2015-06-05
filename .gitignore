@@ -6,3 +6,6 @@
 
 # output svg
 /out.svg
+
+# vim
+*.swp
