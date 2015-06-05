@@ -1,0 +1,19 @@
+[{
+    "name": "stay",
+    "nodes": [{
+        "id": "frog-stay",
+        "duration": 1000
+    }, {
+        "id": "legs",
+        "t": [[0, 0, 0], [50, 0, 0], [100, 0, 0]],
+        "duration": 1000,
+        "timing": "linear",
+        "repeat": "infinite"
+    }, {
+        "id": "body",
+        "t": [[0, 0, 0], [50, 0, 10], [100, 0, 0]],
+        "duration": 1500,
+        "timing": "linear",
+        "repeat": "infinite"
+    }]
+}]

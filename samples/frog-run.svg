@@ -5,6 +5,7 @@
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="frog-stay" sketch:type="MSLayerGroup" transform="translate(0.000000, -258.000000)"></g>
         <g id="frog-run" sketch:type="MSLayerGroup">
             <g id="body" sketch:type="MSShapeGroup">
                 <path d="M60.7382842,60.3046857 C88.7926415,74.2572887 28.0351555,88.5429701 63.9101555,106.652345 C96.1001052,122.90154 269.027339,142.193353 269.027339,130.576166 C269.027339,67.4249745 116.839092,67.0857332 112,38.015328 C105.710941,0.234375002 64.4999992,-9.50361161 44.4999992,10.5117189 C32.8744714,22.1461579 0.671644889,-8.88251688 0.640625002,29.5664064 C0.62663979,46.900975 32.4788083,46.2500687 60.7382842,60.3046857 Z" id="Oval-1" fill="#019528"></path>

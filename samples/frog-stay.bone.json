@@ -1,0 +1,16 @@
+[{
+    "id": "frog-stay",
+    "x": 130,
+    "y": 100,
+    "parent": null
+}, {
+    "id": "body",
+    "x": 0,
+    "y": 0,
+    "parent": "frog-stay"
+}, {
+    "id": "legs",
+    "x": 0,
+    "y": 0,
+    "parent": "frog-stay"
+}]
