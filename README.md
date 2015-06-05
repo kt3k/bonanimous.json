@@ -2,6 +2,8 @@
 
 > Open source skeletal animation serialization format
 
+![](http://kt3k.github.io/bonanimous.json/samples/frog-stay.out.svg)
+
 # spec
 
 ***bonanimous.json*** consists of 2 different kinds of `.json` files called `.bone.json` and `.anim.json`.
