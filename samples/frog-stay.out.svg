@@ -48,7 +48,7 @@
 @keyframes anim_stay_body {
   0% { transform: translate(130px,100px) scale(1,1) rotate(0deg) translate(-130px,-100px) }
   100% { transform: translate(130px,100px) scale(1,1) rotate(0deg) translate(-130px,-100px) }
-  50% { transform: translate(130px,100px) scale(1,1) rotate(0deg) translate(-130px,-90px) }
+  50% { transform: translate(130px,100px) scale(1,1) rotate(1.5deg) translate(-130.73788784189682px,-89.97724980193655px) }
 }
 .stay #body {
   animation-name: anim_stay_body;
