@@ -27,7 +27,8 @@
   "homepage": "https://github.com/kt3k/bonanimous",
   "dependencies": {
     "minimist": "^1.1.1",
-    "subclassjs": "^1.2.0"
+    "subclassjs": "^1.2.0",
+    "svgo": "^0.5.2"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
