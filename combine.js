@@ -3,58 +3,80 @@
 
 var fs = require('fs');
 var ba2css = require('./ba2css');
+var svg2js = require('svgo/lib/svgo/svg2js');
+var js2svg = require('svgo/lib/svgo/js2svg');
+var SvgNode = require('svgo/lib/svgo/jsAPI');
 
 var argv = require('minimist')(process.argv.slice(2));
 
-var source = argv.source;
-var bone = argv.bone;
-var anim = argv.anim;
-var output = argv.output;
 
+var createStyleElement = function (cssBody, parent) {
+    var styleElement = new SvgNode({elem: "style", content: []}, parent);
 
+    var cssTextNode = new SvgNode({text: cssBody}, styleElement);
 
-console.log('[source] ' + source);
-console.log('[bone]   ' + bone);
-console.log('[anim]   ' + anim);
-console.log('[output] ' + output);
+    styleElement.content.push(cssTextNode);
 
-if (!source) {
-    throw new Error('source not specified: ' + source);
-}
+    return styleElement;
+};
 
-if (!bone) {
-    throw new Error('bone not specified: ' + bone);
-}
+var main = function (argv) {
 
-if (!anim) {
-    throw new Error('anim not specified: ' + anim);
-}
+    var source = argv.source;
+    var bone = argv.bone;
+    var anim = argv.anim;
+    var output = argv.output;
 
-if (!output) {
-    throw new Error('output not specified: ' + output);
-}
+    console.log('[source] ' + source);
+    console.log('[bone]   ' + bone);
+    console.log('[anim]   ' + anim);
+    console.log('[output] ' + output);
 
+    if (!source) {
+        throw new Error('source not specified: ' + source);
+    }
 
+    if (!bone) {
+        throw new Error('bone not specified: ' + bone);
+    }
 
-var sourceSvg = fs.readFileSync(source).toString();
+    if (!anim) {
+        throw new Error('anim not specified: ' + anim);
+    }
 
-try {
-    bone = JSON.parse(fs.readFileSync(bone));
-} catch (e) {
-    throw new Error('bone file is broken');
-}
+    if (!output) {
+        throw new Error('output not specified: ' + output);
+    }
 
-try {
-    anim = JSON.parse(fs.readFileSync(anim));
-} catch (e) {
-    throw new Error('anim file is broken');
-}
+    var sourceSvg = fs.readFileSync(source).toString();
 
-console.log('All arguments look well');
-console.log('Generating output file');
+    try {
+        bone = JSON.parse(fs.readFileSync(bone));
+    } catch (e) {
+        throw new Error('bone file is broken');
+    }
 
-var outCss = ba2css(bone, anim);
+    try {
+        anim = JSON.parse(fs.readFileSync(anim));
+    } catch (e) {
+        throw new Error('anim file is broken');
+    }
 
-var outputSvg = sourceSvg.replace('</svg>', '<style>\n' + outCss + '\n</style>\n</svg>');
+    console.log('All arguments look well');
+    console.log('Generating output file');
 
-fs.writeFileSync(output, outputSvg);
+    var outCss = ba2css(bone, anim);
+
+    svg2js(sourceSvg, function (svgTree) {
+
+        svgTree.content[0].content.push(createStyleElement(outCss));
+
+        var outputSvg = js2svg(svgTree, {pretty: true});
+
+        fs.writeFileSync(output, outputSvg.data);
+
+    });
+
+};
+
+main(argv);

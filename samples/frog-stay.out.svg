@@ -19,8 +19,8 @@
             </g>
         </g>
     </g>
-<style>
-@keyframes anim_stay_frog-stay {
+    <style>
+        @keyframes anim_stay_frog-stay {
   0% { transform: translate(130px,100px) scale(1,1) rotate(0deg) translate(-130px,-100px) }
   100% { transform: translate(130px,100px) scale(1,1) rotate(0deg) translate(-130px,-100px) }
 }
@@ -58,5 +58,5 @@
   animation-direction: undefined;
 }
 
-</style>
+    </style>
 </svg>
