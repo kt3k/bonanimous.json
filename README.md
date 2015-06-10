@@ -4,6 +4,8 @@
 
 ![](http://kt3k.github.io/bonanimous.json/samples/frog-stay.out.svg)
 
+![](http://kt3k.github.io/bonanimous.json/samples/frog-run.out.svg)
+
 # spec
 
 ***bonanimous.json*** consists of 2 different kinds of `.json` files called `.bone.json` and `.anim.json`.
