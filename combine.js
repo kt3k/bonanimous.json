@@ -11,6 +11,7 @@ var argv = require('minimist')(process.argv.slice(2));
 
 
 var createStyleElement = function (cssBody, parent) {
+
     var styleElement = new SvgNode({elem: "style", content: []}, parent);
 
     var cssTextNode = new SvgNode({text: cssBody}, styleElement);
@@ -18,6 +19,7 @@ var createStyleElement = function (cssBody, parent) {
     styleElement.content.push(cssTextNode);
 
     return styleElement;
+
 };
 
 var main = function (argv) {
@@ -69,7 +71,14 @@ var main = function (argv) {
 
     svg2js(sourceSvg, function (svgTree) {
 
-        svgTree.content[0].content.push(createStyleElement(outCss));
+        // take svg element
+        var svgElem = svgTree.content.filter(function (node) {
+
+            return node.isElem('svg');
+
+        })[0];
+
+        svgElem.content.push(createStyleElement(outCss));
 
         var outputSvg = js2svg(svgTree, {pretty: true});
 
