@@ -1,0 +1,31 @@
+[{
+  "id": "frog-run",
+  "x": 130,
+  "y": 100,
+  "parent": null
+}, {
+  "id": "body",
+  "x": 0,
+  "y": 0,
+  "parent": "frog-run"
+}, {
+  "id": "front-leg-right",
+  "x": -50,
+  "y": 20,
+  "parent": "body"
+}, {
+  "id": "front-leg-left",
+  "x": -30,
+  "y": 20,
+  "parent": "body"
+}, {
+  "id": "hind-leg-right",
+  "x": 100,
+  "y": 20,
+  "parent": "body"
+}, {
+  "id": "hind-leg-left",
+  "x": 70,
+  "y": 30,
+  "parent": "body"
+}]

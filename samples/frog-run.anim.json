@@ -1,0 +1,32 @@
+[{
+  "name": "default",
+  "nodes": [{
+    "id": "body",
+    "t": [[0, 0], [50, 0, 5], [100, 0]],
+    "duration": 500,
+    "repeat": "infinite",
+    "direction": "alternate"
+  }, {
+    "id": "front-leg-right",
+    "r": [[0, 0], [50, 30], [100, 0]],
+    "duration": 500,
+    "repeat": "infinite"
+  }, {
+    "id": "front-leg-left",
+    "r": [[0, 0], [50, -30], [100, 0]],
+    "duration": 500,
+    "repeat": "infinite"
+  }, {
+    "id": "hind-leg-right",
+    "r": [[0, 0], [50, -20], [100, 0]],
+    "t": [[0, 0], [50, -8, 0], [100, 0]],
+    "duration": 500,
+    "repeat": "infinite"
+  }, {
+    "id": "hind-leg-left",
+    "r": [[0, 0], [50, 20], [100, 0]],
+    "t": [[0, 0], [50, 0, -10], [100, 0]],
+    "duration": 500,
+    "repeat": "infinite"
+  }]
+}]
