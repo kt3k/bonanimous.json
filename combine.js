@@ -2,6 +2,8 @@
 
 
 var fs = require('fs');
+var chalk = require('chalk');
+
 var ba2css = require('./ba2css');
 var svg2js = require('svgo/lib/svgo/svg2js');
 var js2svg = require('svgo/lib/svgo/js2svg');
@@ -35,33 +37,80 @@ var main = function (argv) {
     console.log('[output] ' + output);
 
     if (!source) {
-        throw new Error('source not specified: ' + source);
+        console.log(chalk.red('source not specified: ' + source));
+        process.exit();
     }
 
     if (!bone) {
-        throw new Error('bone not specified: ' + bone);
+        console.log(chalk.red('bone not specified: ' + bone));
+        process.exit();
     }
 
     if (!anim) {
-        throw new Error('anim not specified: ' + anim);
+        console.log(chalk.red('anim not specified: ' + anim));
+        process.exit();
     }
 
     if (!output) {
-        throw new Error('output not specified: ' + output);
+        console.log(chalk.red('output not specified: ' + output));
+        process.exit();
     }
 
-    var sourceSvg = fs.readFileSync(source).toString();
+    var sourceSvg;
 
     try {
-        bone = JSON.parse(fs.readFileSync(bone));
+
+        sourceSvg = fs.readFileSync(source).toString();
+
     } catch (e) {
-        throw new Error('bone file is broken');
+
+        console.log(chalk.red('source not found: ' + source));
+        process.exit();
+
     }
 
     try {
-        anim = JSON.parse(fs.readFileSync(anim));
+
+        bone = fs.readFileSync(bone);
+
     } catch (e) {
-        throw new Error('anim file is broken');
+
+        console.log(chalk.red('bone not found: ' + bone));
+        process.exit();
+
+    }
+
+    try {
+
+        bone = JSON.parse(bone);
+
+    } catch (e) {
+
+        console.log(chalk.red('bone file is broken (cannot parse it as JSON)'));
+        process.exit();
+
+    }
+
+    try {
+
+        anim = fs.readFileSync(anim);
+
+    } catch (e) {
+
+        console.log(chalk.red('anim not found: ' + anim));
+        process.exit();
+
+    }
+
+    try {
+
+        anim = JSON.parse(anim);
+
+    } catch (e) {
+
+        console.log(chalk.red('anim file is broken (cannot parse it as JSON)'));
+        process.exit();
+
     }
 
     console.log('All arguments look well');

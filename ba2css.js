@@ -8,7 +8,7 @@ var compile = function (bones, animations) {
     var boneTree = new BoneFactory().createTreeFromObjectList(bones);
     animations = new BoneAnimationFactory(boneTree).createFromObjectList(animations);
 
-    return animations.map(function (animation) {
+    return '\n' + animations.map(function (animation) {
 
         return animation.toCssString();
 
