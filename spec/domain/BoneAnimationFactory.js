@@ -2,8 +2,10 @@
 
 var BoneAnimationFactory = require('../../lib/domain/BoneAnimationFactory');
 var BoneAnimation = require('../../lib/domain/BoneAnimation');
+var BoneFactory = require('../../lib/domain/BoneFactory');
 
-var boneAnimationList = require('../fixture/example.anim.json');
+var boneAnimationList = require('../fixture/example.anim');
+var bone = require('../fixture/example.bone');
 
 
 
@@ -11,7 +13,9 @@ describe('BoneAnimation', function () {
 
     beforeEach(function () {
 
-        this.factory = new BoneAnimationFactory();
+        var boneTree = new BoneFactory().createTreeFromObjectList(bone);
+
+        this.factory = new BoneAnimationFactory(boneTree);
 
     });
 

@@ -5,8 +5,8 @@ var BoneAnimationFactory = require('./lib/domain/BoneAnimationFactory');
 
 var compile = function (bones, animations) {
 
-    animations = new BoneAnimationFactory().createFromObjectList(animations);
     var boneTree = new BoneFactory().createTreeFromObjectList(bones);
+    animations = new BoneAnimationFactory(boneTree).createFromObjectList(animations);
 
     return animations.map(function (animation) {
 
