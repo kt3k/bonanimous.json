@@ -62,6 +62,36 @@ describe('NodeAnimation', function () {
 
         });
 
+        it('omits class name in the css selector when the name is `default`', function () {
+
+            var nodeAnim = factory.createFromNameAndObject('default', {
+                id: '0-0',
+                s: [[15, 1.2], [35, 1.3]],
+                duration: 2000
+            });
+
+            var css = nodeAnim.toCssString();
+
+            var expected = '';
+
+            expected += '@keyframes anim_default_0-0 {\n';
+            expected += '  0% { transform: translate(60px,60px) scale(1,1) rotate(0deg) translate(-60px,-60px) }\n';
+            expected += '  15% { transform: translate(60px,60px) scale(1.2,1.2) rotate(0deg) translate(-60px,-60px) }\n';
+            expected += '  35% { transform: translate(60px,60px) scale(1.3,1.3) rotate(0deg) translate(-60px,-60px) }\n';
+            expected += '  100% { transform: translate(60px,60px) scale(1,1) rotate(0deg) translate(-60px,-60px) }\n';
+            expected += '}\n';
+            expected += '#0-0 {\n';
+            expected += '  animation-name: anim_default_0-0;\n';
+            expected += '  animation-iteration-count: undefined;\n';
+            expected += '  animation-duration: 2000ms;\n';
+            expected += '  animation-timing-function: undefined;\n';
+            expected += '  animation-direction: undefined;\n';
+            expected += '}\n';
+
+            expect(css).to.equal(expected);
+
+        });
+
     });
 
 });
