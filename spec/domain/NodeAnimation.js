@@ -17,7 +17,7 @@ describe('NodeAnimation', function () {
 
         it('returns list of keyframes, which means the union of the all keyframes of scaling, rotation and translation', function () {
 
-            var nodeAnim = factory.createFromObject({
+            var nodeAnim = factory.createFromNameAndObject('some-animation', {
                 id: '0-0',
                 s: [[15, 1.2], [35, 1.3]],
                 r: [[40, 10], [41, 20], [42, 30]],
@@ -34,24 +34,24 @@ describe('NodeAnimation', function () {
 
         it('returns css representation of the node animation', function () {
 
-            var nodeAnim = factory.createFromObject({
+            var nodeAnim = factory.createFromNameAndObject('some-animation', {
                 id: '0-0',
                 s: [[15, 1.2], [35, 1.3]],
                 duration: 2000
             });
 
-            var css = nodeAnim.toCssString('example');
+            var css = nodeAnim.toCssString();
 
             var expected = '';
 
-            expected += '@keyframes anim_example_0-0 {\n';
+            expected += '@keyframes anim_some-animation_0-0 {\n';
             expected += '  0% { transform: translate(60px,60px) scale(1,1) rotate(0deg) translate(-60px,-60px) }\n';
             expected += '  15% { transform: translate(60px,60px) scale(1.2,1.2) rotate(0deg) translate(-60px,-60px) }\n';
             expected += '  35% { transform: translate(60px,60px) scale(1.3,1.3) rotate(0deg) translate(-60px,-60px) }\n';
             expected += '  100% { transform: translate(60px,60px) scale(1,1) rotate(0deg) translate(-60px,-60px) }\n';
             expected += '}\n';
-            expected += '.example #0-0 {\n';
-            expected += '  animation-name: anim_example_0-0;\n';
+            expected += '.some-animation #0-0 {\n';
+            expected += '  animation-name: anim_some-animation_0-0;\n';
             expected += '  animation-iteration-count: undefined;\n';
             expected += '  animation-duration: 2000ms;\n';
             expected += '  animation-timing-function: undefined;\n';

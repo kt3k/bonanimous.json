@@ -10,7 +10,7 @@ var compile = function (bones, animations) {
 
     return animations.map(function (animation) {
 
-        return animation.toCssString(boneTree);
+        return animation.toCssString();
 
     }).join('\n');
 };
