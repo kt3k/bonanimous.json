@@ -1,28 +1,13 @@
 #!/usr/bin/env node
 
-
 var fs = require('fs');
 var chalk = require('chalk');
 
 var ba2css = require('./ba2css');
-var svg2js = require('svgo/lib/svgo/svg2js');
-var js2svg = require('svgo/lib/svgo/js2svg');
-var SvgNode = require('svgo/lib/svgo/jsAPI');
+var svg2jquery = require('svg-jquery');
 
 var argv = require('minimist')(process.argv.slice(2));
 
-
-var createStyleElement = function (cssBody, parent) {
-
-    var styleElement = new SvgNode({elem: "style", content: []}, parent);
-
-    var cssTextNode = new SvgNode({text: cssBody}, styleElement);
-
-    styleElement.content.push(cssTextNode);
-
-    return styleElement;
-
-};
 
 var main = function (argv) {
 
@@ -31,29 +16,30 @@ var main = function (argv) {
     var anim = argv.anim;
     var output = argv.output;
 
-    console.log('[source] ' + source);
-    console.log('[bone]   ' + bone);
-    console.log('[anim]   ' + anim);
-    console.log('[output] ' + output);
+    process.stderr.write('[source] ' + source + '\n');
+    process.stderr.write('[bone]   ' + bone + '\n');
+    process.stderr.write('[anim]   ' + anim + '\n');
+    process.stderr.write('[output] ' + output + '\n');
 
     if (!source) {
-        console.log(chalk.red('source not specified: ' + source));
+        process.stderr.write(chalk.red('--source not specified') + '\n');
         process.exit();
     }
 
     if (!bone) {
-        console.log(chalk.red('bone not specified: ' + bone));
+        process.stderr.write(chalk.red('--bone not specified') + '\n');
         process.exit();
     }
 
     if (!anim) {
-        console.log(chalk.red('anim not specified: ' + anim));
+        process.stderr.write(chalk.red('--anim not specified') + '\n');
         process.exit();
     }
 
     if (!output) {
-        console.log(chalk.red('output not specified: ' + output));
-        process.exit();
+
+        process.stderr.write('--output not specified, then output to stdout.' + '\n');
+
     }
 
     var sourceSvg;
@@ -64,7 +50,7 @@ var main = function (argv) {
 
     } catch (e) {
 
-        console.log(chalk.red('source not found: ' + source));
+        process.stderr.write(chalk.red('source not found: ' + source) + '\n');
         process.exit();
 
     }
@@ -75,7 +61,7 @@ var main = function (argv) {
 
     } catch (e) {
 
-        console.log(chalk.red('bone not found: ' + bone));
+        process.stderr.write(chalk.red('bone not found: ' + bone) + '\n');
         process.exit();
 
     }
@@ -86,7 +72,7 @@ var main = function (argv) {
 
     } catch (e) {
 
-        console.log(chalk.red('bone file is broken (cannot parse it as JSON)'));
+        process.stderr.write(chalk.red('bone file is broken (cannot parse it as JSON)' + '\n'));
         process.exit();
 
     }
@@ -97,7 +83,7 @@ var main = function (argv) {
 
     } catch (e) {
 
-        console.log(chalk.red('anim not found: ' + anim));
+        process.stderr.write(chalk.red('anim not found: ' + anim) + '\n');
         process.exit();
 
     }
@@ -108,33 +94,37 @@ var main = function (argv) {
 
     } catch (e) {
 
-        console.log(chalk.red('anim file is broken (cannot parse it as JSON)'));
+        process.stderr.write(chalk.red('anim file is broken (cannot parse it as JSON)') + '\n');
         process.exit();
 
     }
 
-    console.log('All arguments look well');
-    console.log('Generating output file');
+    process.stderr.write('All arguments look well' + '\n');
+    process.stderr.write('Generating output file' + '\n');
 
     var outCss = ba2css(bone, anim);
 
-    svg2js(sourceSvg, function (svgTree) {
+    return svg2jquery(sourceSvg).then(function (res) {
 
-        // take svg element
-        var svgElem = svgTree.content.filter(function (node) {
+        var outputSvg = res.svg.append('<style>\n' + outCss + '</style>')[0].outerHTML;
 
-            return node.isElem('svg');
+        if (output) {
 
-        })[0];
+            fs.writeFileSync(output, outputSvg);
 
-        svgElem.content.push(createStyleElement(outCss));
+        } else {
 
-        var outputSvg = js2svg(svgTree, {pretty: true});
+            console.log(outputSvg);
 
-        fs.writeFileSync(output, outputSvg.data);
+        }
 
     });
 
 };
 
-main(argv);
+main(argv).catch(function (err) {
+
+    console.log(err);
+    console.log(err.stack);
+
+});
