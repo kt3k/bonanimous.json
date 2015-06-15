@@ -10,13 +10,13 @@
   "parent": "frog-run"
 }, {
   "id": "front-leg-right",
-  "x": -50,
-  "y": 20,
+  "x": -62,
+  "y": 8,
   "parent": "body"
 }, {
   "id": "front-leg-left",
-  "x": -30,
-  "y": 20,
+  "x": -28,
+  "y": 15,
   "parent": "body"
 }, {
   "id": "hind-leg-right",
