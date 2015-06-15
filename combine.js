@@ -11,15 +11,17 @@ var argv = require('minimist')(process.argv.slice(2));
 
 var main = function (argv) {
 
-    var source = argv.source;
-    var bone = argv.bone;
-    var anim = argv.anim;
-    var output = argv.output;
+    var source = argv.source || argv.s;
+    var bone = argv.bone || argv.b;
+    var anim = argv.anim || argv.a;
+    var output = argv.output || argv.o;
+    var debug = argv.debug || argv.d;
 
     process.stderr.write('[source] ' + source + '\n');
     process.stderr.write('[bone]   ' + bone + '\n');
     process.stderr.write('[anim]   ' + anim + '\n');
     process.stderr.write('[output] ' + output + '\n');
+    process.stderr.write('[debug]  ' + debug + '\n');
 
     if (!source) {
         process.stderr.write(chalk.red('--source not specified') + '\n');
@@ -102,23 +104,48 @@ var main = function (argv) {
     process.stderr.write('All arguments look well' + '\n');
     process.stderr.write('Generating output file' + '\n');
 
-    var outCss = ba2css(bone, anim);
 
     return svg2jquery(sourceSvg).then(function (res) {
 
-        var outputSvg = res.svg.append('<style>\n' + outCss + '</style>')[0].outerHTML;
+        var $ = res.window.jQuery;
+
+        var BoneFactory = require('./lib/domain/BoneFactory');
+        var boneTree = new BoneFactory().createTreeFromObjectList(bone);
+
+        if (debug) {
+            boneTree.getBones().forEach(function (bone) {
+
+                $('<ellipse />', {
+                    attr: {
+                        cx: bone.getAbsolutePosition().x,
+                        cy: bone.getAbsolutePosition().y,
+                        rx: 6,
+                        ry: 3,
+                        stroke: 'black',
+                        'stroke-width': 1,
+                        'fill-opacity': 0,
+                    }
+                }).appendTo(res.svg.find('#' + bone.id));
+
+            });
+        }
+
+        return res.svg.append('<style>\n' + ba2css(bone, anim) + '</style>')[0].outerHTML;
+
+    }).then(function (svg) {
 
         if (output) {
 
-            fs.writeFileSync(output, outputSvg);
+            fs.writeFileSync(output, svg);
 
         } else {
 
-            console.log(outputSvg);
+            console.log(svg);
 
         }
 
     });
+
 
 };
 
