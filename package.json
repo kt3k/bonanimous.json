@@ -36,6 +36,6 @@
     "grunt": "^1.0.1",
     "grunt-mocha-chai-sinon": "0.0.9",
     "jit-grunt": "^0.10.0",
-    "time-grunt": "^1.2.1"
+    "time-grunt": "^1.4.0"
   }
 }
