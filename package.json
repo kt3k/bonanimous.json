@@ -30,7 +30,7 @@
     "minimist": "^1.1.1",
     "subclassjs": "^1.2.0",
     "svg-jquery": "^1.0.3",
-    "svgo": "^0.7.1"
+    "svgo": "^0.7.2"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
